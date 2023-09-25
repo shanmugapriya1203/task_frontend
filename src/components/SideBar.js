@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { FaTasks, FaCalendarAlt, FaUsers, FaCog } from 'react-icons/fa';
 import logo from '../images/title.png';
 import Responsive from 'react-responsive';
@@ -44,9 +44,9 @@ const Sidebar = () => {
                   }`}
                 >
                   {item.icon}
-                  <a href={item.path} className="hover:underline">
+                  <Link to={item.path} className="hover:underline">
                     {item.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -55,10 +55,8 @@ const Sidebar = () => {
       </Desktop>
       
       <Mobile>
-        <button className=" font-bold text-2xl text-blue-500 md:hidden" onClick={toggleMenu}>
-      
-         Menu
-          
+        <button className="font-bold text-2xl text-blue-500 md:hidden" onClick={toggleMenu}>
+          Menu
         </button>
         {menuOpen && (
           <nav className="md:hidden">
@@ -69,9 +67,9 @@ const Sidebar = () => {
                   className={`text-black`}
                 >
                   {item.icon}
-                  <a href={item.path} className="hover:underline">
+                  <Link to={item.path} className="hover:underline">
                     {item.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
