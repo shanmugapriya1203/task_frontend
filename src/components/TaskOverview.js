@@ -20,7 +20,7 @@ const TaskOverview = ({ tasks, setTasks }) => {
   const handleUpdateTask = async (updatedTask) => {
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/tasks/update/${updatedTask.id}`,
+        `${config.api}/api/tasks/update/${updatedTask.id}`,
         updatedTask
       );
 

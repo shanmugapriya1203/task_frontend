@@ -8,12 +8,11 @@ const Team = () => {
   const [projectName, setProjectName] = useState("");
   const [teamMemberName, setTeamMemberName] = useState("");
   const [updateText, setUpdateText] = useState("");
-  const [dueDate, setDueDate] = useState("");
   const [projectUpdates, setProjectUpdates] = useState([]);
 
   const fetchTeamUpdates = async () => {
     try {
-      const response = await axios.get(`${config.api}/api/team/teamUpdates`); // Replace with your backend API URL
+      const response = await axios.get(`${config.api}/api/team/teamUpdates`);
       setProjectUpdates(response.data);
     } catch (error) {
       console.error("Error fetching team updates:", error);
@@ -26,25 +25,24 @@ const Team = () => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+  
     const newUpdate = {
       projectName,
-      teamMemberName,
-      updateText,
-      dueDate,
+      teamMemberName, 
+      updateText,    
     };
-
+  
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/team/teamUpdates",
+        `${config.api}/api/team/teamUpdates`,
         newUpdate
       );
       if (response.status === 201) {
         const updatedUpdates = [...projectUpdates, response.data];
         setProjectUpdates(updatedUpdates);
         setProjectName("");
-        setTeamMemberName("");
-        setUpdateText("");
-        setDueDate("");
+        setTeamMemberName(""); 
+        setUpdateText("");     
       } else {
         console.error("Unexpected status code", response.status);
       }
@@ -52,6 +50,7 @@ const Team = () => {
       console.error("Error creating team update:", error);
     }
   };
+  
 
   const handleDeleteUpdate = async (updateId) => {
     const confirmed = window.confirm(
@@ -60,7 +59,7 @@ const Team = () => {
     if (confirmed) {
       try {
         const response = await axios.delete(
-          `http://localhost:5000/api/team/teamUpdates/${updateId}`
+          `${config.api}/api/team/teamUpdates/${updateId}`
         );
 
         if (response.status === 200) {
@@ -126,18 +125,7 @@ const Team = () => {
                 onChange={(e) => setUpdateText(e.target.value)}
               />
             </div>
-            <div className="mb-4">
-              <label htmlFor="dueDate" className="block text-gray-700">
-                Due Date
-              </label>
-              <input
-                type="date"
-                id="dueDate"
-                className="border border-gray-300 rounded w-full p-2 text-base md:text-lg lg:text-xl"
-                value={dueDate}
-                onChange={(e) => setDueDate(e.target.value)}
-              />
-            </div>
+
             <button
               type="submit"
               className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 text-base md:text-lg lg:text-xl"
