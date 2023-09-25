@@ -16,11 +16,13 @@ const Sidebar = () => {
   };
 
   const menuItems = [
-    { label: 'Create', path: '/tasks', icon: '📝' },
-    { label: 'Calendar', path: '/calendar', icon: '📅' },
-    { label: 'Team', path: '/team', icon: '👥' },
-    { label: 'Settings', path: '/settings', icon: '⚙️' },
+    { label: 'Create', path: '/tasks', icon: <FaTasks /> },
+    { label: 'Calendar', path: '/calendar', icon: <FaCalendarAlt /> },
+    { label: 'Team', path: '/team', icon: <FaUsers /> },
+    { label: 'Settings', path: '/settings', icon: <FaCog /> },
+    { label: 'My Tasks', path: '/dashboard', icon: <FaTasks /> }, // Using FaTasks icon
   ];
+  
 
   return (
     <div>

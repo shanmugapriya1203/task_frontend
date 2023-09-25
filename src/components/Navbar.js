@@ -35,29 +35,20 @@ const Navbar = () => {
         {menuOpen && (
           <div className="absolute top-16 right-4 bg-white p-2 rounded-md shadow-md">
             <div className="space-y-2">
-              {isLoggedIn && (
-                <Link
-                  to="/dashboard"
-                  className="block text-black hover:text-blue-700"
-                  onClick={toggleMenu}
-                >
-                  My Tasks
-                </Link>
-              )}
-              <a
-                href="/about"
+              <Link
+                to="/about"
                 className="block text-black hover:text-blue-700"
                 onClick={toggleMenu}
               >
                 About
-              </a>
-              <a
-                href="/pricing"
+              </Link>
+              <Link
+                to="/pricing"
                 className="block text-black hover:text-blue-700"
                 onClick={toggleMenu}
               >
                 Pricing
-              </a>
+              </Link>
               {isLoggedIn ? (
                 <button
                   className="block bg-black text-white hover:bg-blue-700 hover:text-white py-2 px-4 rounded-md"
@@ -80,17 +71,12 @@ const Navbar = () => {
         )}
       </div>
       <div className="md:flex items-center space-x-4 hidden">
-        {isLoggedIn && (
-          <Link to="/dashboard" className="text-black hover:text-blue-700">
-            My Tasks
-          </Link>
-        )}
-        <a href="/about" className="text-black hover:text-blue-700">
+        <Link to="/about" className="text-black hover:text-blue-700">
           About
-        </a>
-        <a href="/pricing" className="text-black hover:text-blue-700">
+        </Link>
+        <Link to="/pricing" className="text-black hover:text-blue-700">
           Pricing
-        </a>
+        </Link>
         {isLoggedIn ? (
           <button
             className="bg-black text-white hover:bg-blue-700 hover:text-white py-2 px-4 rounded-md"
