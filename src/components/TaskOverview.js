@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Sidebar from "./SideBar";
 import { FaEdit, FaTrash } from "react-icons/fa";
-import { FaArrowLeft } from "react-icons/fa"; // Import the left arrow icon
+import { FaArrowLeft } from "react-icons/fa";
 import axios from "axios";
 import EditTaskForm from "../pages/EditTaskForm";
 import { config } from "../config";
@@ -59,11 +59,11 @@ const TaskOverview = ({ tasks, setTasks }) => {
   };
 
   return (
-    <div className="flex">
-      <div className="w-1/4 p-4">
+    <div className="flex flex-col md:flex-row">
+      <div className="w-full md:w-1/4 p-4">
         <Sidebar />
       </div>
-      <div className="w-3/4 p-4 bg-blue-100 rounded-lg shadow-md">
+      <div className="w-full md:w-3/4 p-4 bg-blue-100 rounded-lg shadow-md">
         <h2 className="text-xl font-semibold mb-4">Task Overview</h2>
 
         {editedTask && (
@@ -74,20 +74,18 @@ const TaskOverview = ({ tasks, setTasks }) => {
           />
         )}
 
-        {/* Conditional rendering when there are no tasks */}
         {tasks.length <= 0 ? (
           <div className="text-center">
             <p>Create a task</p>
             <FaArrowLeft className="text-blue-500 text-2xl" />
           </div>
         ) : (
-          // All Tasks
           <div className="mb-4">
-            <div className="grid grid-cols-1 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {tasks.map((task) => (
                 <div
                   key={task.id}
-                  className="bg-white rounded-lg shadow-md p-4 border-l-4 border-blue-500 w-full"
+                  className="bg-white rounded-lg shadow-md p-4 border-l-4 border-blue-500"
                 >
                   <div className="flex justify-between items-center mb-2">
                     <h4 className="text-xl font-semibold">{task.title}</h4>

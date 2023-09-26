@@ -84,8 +84,7 @@ const Team = () => {
         <Sidebar />
       </div>
       <div className="w-3/4 p-4">
-        <h1 className="text-2xl font-bold">Team Information</h1>
-        <p>Welcome to our team page.</p>
+      
         <div className="mt-8">
           <h2 className="text-xl font-bold mb-4">Add Team Update</h2>
           <form onSubmit={handleFormSubmit}>

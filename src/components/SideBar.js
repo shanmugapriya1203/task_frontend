@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { FaTasks, FaCalendarAlt, FaUsers, FaCog } from 'react-icons/fa';
+import { MdCreate } from "react-icons/md";
+import { FiX } from "react-icons/fi"; // Import the close (X) icon
 import logo from '../images/title.png';
 import Responsive from 'react-responsive';
 
@@ -16,19 +18,17 @@ const Sidebar = () => {
   };
 
   const menuItems = [
-    { label: 'Create', path: '/tasks', icon: <FaTasks /> },
-    { label: 'Calendar', path: '/calendar', icon: <FaCalendarAlt /> },
-    { label: 'Team', path: '/team', icon: <FaUsers /> },
-    { label: 'Settings', path: '/settings', icon: <FaCog /> },
-    { label: 'My Tasks', path: '/dashboard', icon: <FaTasks /> }, // Using FaTasks icon
+    { label: 'Create', path: '/tasks', icon: <MdCreate color="#FF5733" /> },
+    { label: 'My Tasks', path: '/dashboard', icon: <FaTasks color="#33FF57" /> }, 
+    { label: 'Calendar', path: '/calendar', icon: <FaCalendarAlt color="#5733FF" /> },
+    { label: 'Team', path: '/team', icon: <FaUsers color="#FF5733" /> },
+    { label: 'Settings', path: '/settings', icon: <FaCog color="black" /> },
   ];
-  
 
   return (
     <div>
       <Desktop>
         <aside className="bg-gradient-to-r from-blue-100 to-blue-300 w-64 p-6 h-[100vh]">
-          {/* Increased the height to 100vh (100% of the viewport height) */}
           <div className="flex items-center justify-between mb-6">
             <img
               src={logo}
@@ -57,11 +57,23 @@ const Sidebar = () => {
       </Desktop>
       
       <Mobile>
-        <button className="font-bold text-2xl text-blue-500 md:hidden" onClick={toggleMenu}>
-          Menu
+      <button className="font-bold text-2xl text-blue-500 md:hidden" onClick={toggleMenu}>
+          {menuOpen ? 'Close' : 'Menu'} {/* Toggle between 'Menu' and 'Close' */}
         </button>
-        {menuOpen && (
-          <nav className="md:hidden">
+
+
+         <aside
+          className={`bg-white w-64 p-6 h-full fixed top-0 left-0 transform ${menuOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform ease-in-out duration-300`}
+        >
+          <div className="flex items-center justify-end mb-6">
+            <button
+              className="text-2xl text-blue-500 focus:outline-none"
+              onClick={toggleMenu}
+            >
+              &#10005;
+            </button>
+          </div>
+          <nav>
             <ul className="space-y-4">
               {menuItems.map((item, index) => (
                 <li
@@ -76,7 +88,7 @@ const Sidebar = () => {
               ))}
             </ul>
           </nav>
-        )}
+        </aside>
       </Mobile>
     </div>
   );
